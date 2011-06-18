@@ -7,10 +7,13 @@
 //	Last modified: 25/02/09
 //
 
+
 #import "StaticMethods.h"
 #import "CloudLayer.h"
 
+
 #define CLOUD_TAG kCloudSprite
+
 
 @implementation CloudLayer
 
@@ -23,21 +26,16 @@
 - (id)init 
 {
     self = [super init];
-    if (self != nil) {
-        
+    if (self != nil) 
+    {
         Texture2D *lTex = [[TextureMgr sharedTextureMgr] addImage:@"game_assets.png"];
         AtlasSpriteManager *cloudMgr = [AtlasSpriteManager spriteManagerWithTexture: lTex capacity: 30];
         [self addChild: cloudMgr z:5  tag:kMgrAssests];
-        
-        //sdrand(time(NULL));
-        
+                
         for (int i = 0; i < 30; i++) 
         { 
             AtlasSprite *cloud = [AtlasSprite spriteWithRect: CGRectMake(626,88,153,75) spriteManager: cloudMgr];
             [cloudMgr addChild:cloud z:2 tag:CLOUD_TAG+i];
-            //int randomOpacity = ufrand(random() % 125);
-            //int randomX = ufrand(random() % 750);
-            //int randomY = ufrand(random() % 200)-50;arc4random() % 74;
             
             int randomOpacity = ufrand(arc4random() % 135);
             int randomX = arc4random() % 750;
@@ -57,8 +55,8 @@
     for(AtlasSprite *item in [mgr children]) 
     { 
         float x = item.position.x + 0.3f;
-        if (x >= 750) {
-            
+        if (x >= 750) 
+        {
             x = -250;
         }
         item.position = ccp(x, item.position.y);

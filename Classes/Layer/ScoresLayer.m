@@ -6,12 +6,13 @@
 //
 //	Last modified: 25/02/09
 //
+
+
 #import "cocoslive.h"
 
 #import "ScoresLayer.h"
 #import "STMAppDelegate.h"
 #import "STMConfig.h"
-
 
 #define kDownload 0x00ff22
 #define kReload 0x00ff23
@@ -21,10 +22,10 @@
 @implementation ScoresLayer
 
 
--(void) dealloc {    
-    
-    if(loadingLabel) {
-        
+-(void) dealloc 
+{    
+    if(loadingLabel) 
+    {
         [loadingLabel release];
         loadingLabel = nil;
     }
@@ -33,16 +34,16 @@
 }
 
 
-- (id) init {
+- (id) init 
+{
     self = [super init];
-    if (self != nil) {
-        
+    if (self != nil) 
+    {
         isTouchEnabled = YES;
         
         //rf = [Sprite spriteWithFile:@"b_refresh_scores.png"];      
         //[self addChild:rf z:10 tag:kReload];
         //[rf setPosition: cpv(395, 290)];
-        
         
         ds = [Sprite spriteWithFile:@"b_download_scores.png"];      
         [self addChild:ds z:11 tag:kDownload];
@@ -58,15 +59,15 @@
 }
 
 
--(void) positionDefaults {
-    
+-(void) positionDefault
+{
     [ds setPosition: ccp(392, 302)];
-    //[ds setPosition: cpv([ds contentSize].width/2+14, 302)];
     [[mm currentSprite] setPosition: ccp([[mm currentSprite] contentSize].width/2+14, 20)];
 }
 
 
--(void) onEnter {
+-(void) onEnter 
+{
     /*
     // High Scores
     Label * hsl = [Label labelWithString:@"High Scores" fontName:@"Marker Felt" fontSize:24]; 
@@ -75,18 +76,16 @@
     [self addChild:hsl z:10];
     */
     
-
-    
     [self performSelector:@selector(initUIKitStuff)  withObject:nil afterDelay:0.9]; 
     
     [super onEnter];
 }
 
 
--(void) initUIKitStuff {
-    
-    if(!myTable) {
-        
+-(void) initUIKitStuff 
+{
+    if(!myTable)
+    {
         // Lanscaped so x & y coordinates swapped.
         //myTable = [[UITableView alloc] initWithFrame:CGRectMake(-63.0, 137.0, 426.0, 210.0) style:UITableViewStylePlain];
         myTable = [[UITableView alloc] initWithFrame:CGRectMake(-52.0, 152.0, 426.0, 176.0) style:UITableViewStylePlain];
@@ -99,8 +98,8 @@
         [[[STMAppDelegate get] window] addSubview:myTable];
     }
     
-    if(!spinner) {
-
+    if(!spinner) 
+    {
         spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
         [spinner setCenter:CGPointMake(160, 240)]; // I do this because I'm in landscape mode
         [[[STMAppDelegate get] window] addSubview:spinner];
@@ -108,11 +107,11 @@
 }
 
 
-+(ScoresLayer *) get {
-    
++(ScoresLayer *) get 
+{
     static ScoresLayer *instance;
-    if(!instance) {
-        
+    if(!instance) 
+    {
         instance = [[ScoresLayer alloc] init];
     }
     
@@ -120,15 +119,16 @@
 }
 
 
--(void) goMainMenu {
-    
-    NSLog(@"Go to Main Menu");
-    if(myTable) {
+-(void) goMainMenu 
+{
+    if(myTable) 
+    {
         [myTable removeFromSuperview];
         [myTable release];
     }
     
-    if(spinner) {
+    if(spinner) 
+    {
         [spinner removeFromSuperview];
         [spinner release];
     }
@@ -140,8 +140,8 @@
     [[Director sharedDirector] replaceScene:[FadeDownTransition transitionWithDuration:[[STMConfig get] transitionDuration] scene:[[STMAppDelegate get] loadScene:kSceneMenu]]];
 }
 
--(void) downloadScores {
-    
+-(void) downloadScores
+{
     [spinner startAnimating];
     //[[STMAppDelegate get] requestScore];
     [self requestScore];
@@ -149,12 +149,13 @@
 }
 
 
--(void) reloadTable {
-    
+-(void) reloadTable 
+{
     NSLog(@"Reload table");
     NSInteger i = [[[STMAppDelegate get] globalScores] count];
     
-    if(i< 0 || i==0) {
+    if(i< 0 || i==0)
+    {
        [self message:@"Download scores before refreshing"]; 
         
     } else {
@@ -165,8 +166,8 @@
 }
 
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section  {
-    
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section  
+{
 	NSInteger i = [[[STMAppDelegate get] globalScores] count];
 	NSLog(@"Number of rows: %d",i);
         
@@ -174,16 +175,16 @@
 }
 
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
+{
 	static NSString *MyIdentifier = @"HighScoreCell";
 	
 	UILabel *name, *score, *idx, *country;
     
 	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MyIdentifier];
     
-	if (cell == nil) {
-        
+	if (cell == nil) 
+    {
 		cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:MyIdentifier] autorelease];
 		
 		// Position
@@ -254,12 +255,12 @@
 }
 
 
--(void) message: (NSString *)msg {
-    
+-(void) message: (NSString *)msg 
+{
     NSLog(@"%@  [%s:%d] ",msg,__FUNCTION__,__LINE__);
     
-    if(!loadingLabel) {
-        
+    if(!loadingLabel) 
+    {
         NSLog(@"msgLabel == false  [%s:%d] ",__FUNCTION__,__LINE__);
         loadingLabel = [[Label alloc] initWithString:@"" dimensions:CGSizeMake(1000, 20 + 5)
                                        alignment:UITextAlignmentLeft
@@ -282,8 +283,8 @@
 }
 
 
--(void) resetMessage: (id) sender {
-    
+-(void) resetMessage: (id) sender 
+{
     [loadingLabel stopAllActions];   
     [loadingLabel setPosition:ccp([loadingLabel contentSize].width / 2 + [[mm currentSprite] contentSize].width+25, 5)];
     [loadingLabel setOpacity:0xff];
@@ -291,27 +292,27 @@
 }
 
 
-- (BOOL)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event { 
-    
-    for(UITouch *touch in touches) { 
-        
+- (BOOL)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event 
+{ 
+    for(UITouch *touch in touches) 
+    { 
         CGPoint location = [touch locationInView: [touch view]];   
         location = [[Director sharedDirector] convertCoordinate: location];
         
-        for( Sprite *item in children ) { 
-            
-            if (item.tag != 0xFFFFFFFF) {
-                
-                if (CGRectContainsPoint([self rect:item], location)) { 
-                    
-                    if(item.tag == kDownload) {
-                        
+        for( Sprite *item in children )
+        { 
+            if (item.tag != 0xFFFFFFFF) 
+            {
+                if (CGRectContainsPoint([self rect:item], location)) 
+                { 
+                    if(item.tag == kDownload)
+                    {
                         [ds runAction:[ScaleTo actionWithDuration:0.1 scale:1.2f]];
                         return kEventHandled;
                     }
                     
-                    if(item.tag == kMainMenuG) {
-                        
+                    if(item.tag == kMainMenuG) 
+                    {
                         [[mm currentSprite] runAction:[ScaleTo actionWithDuration:0.1 scale:1.2f]];
                         return kEventHandled;
                     }
@@ -325,20 +326,21 @@
 
 
 
-- (BOOL)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event { 
-    
-    for(UITouch *touch in touches) { 
-        
+- (BOOL)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{ 
+    for(UITouch *touch in touches) 
+    { 
         CGPoint location = [touch locationInView: [touch view]];   
         location = [[Director sharedDirector] convertCoordinate: location];
         
-        for( Sprite *item in children ) { 
-            
-            if (item.tag != 0xFFFFFFFF) {
-                
-                if (CGRectContainsPoint([self rect:item], location)) { 
-                    
-                    if(item.tag == kReload) {
+        for( Sprite *item in children ) 
+        { 
+            if (item.tag != 0xFFFFFFFF) 
+            {
+                if (CGRectContainsPoint([self rect:item], location))
+                { 
+                    if(item.tag == kReload) 
+                    {
                         
                         NSLog(@"reload touched");
                         [STMAppDelegate playEffect:kEffectButton];
@@ -346,16 +348,16 @@
                         return kEventHandled;
                     }
                     
-                    if(item.tag == kDownload) {
-                        
+                    if(item.tag == kDownload) 
+                    {
                         [ds runAction:[ScaleTo actionWithDuration:0.1 scale:1.0f]];
                         [STMAppDelegate playEffect:kEffectButton];
                         [self downloadScores];
                         return kEventHandled;
                     }
                     
-                    if(item.tag == kMainMenuG) {
-                        
+                    if(item.tag == kMainMenuG) 
+                    {
                         [[mm currentSprite] runAction:[ScaleTo actionWithDuration:0.1 scale:1.0f]];
                         [STMAppDelegate playEffect:kEffectButton];
                         [self goMainMenu];
@@ -370,8 +372,8 @@
 }
 
 
--(CGRect) rect:(Sprite *) item { 
-    
+-(CGRect) rect:(Sprite *) item 
+{ 
     CGSize s = [item contentSize]; 
     
     CGRect r = CGRectMake( item.position.x - s.width/2, 
@@ -389,15 +391,16 @@
 
 
 #pragma mark -
--(void) requestScore {
+-(void) requestScore 
+{
 	NSLog(@"Requesting scores...");
     [[ScoresLayer get] message:@"Requesting scores..."];
 	ScoreServerRequest *request = [[ScoreServerRequest alloc] initWithGameName:@"STM" delegate:self];
 	
 	// The only supported flag as of v0.1 is kQueryFlagByCountry
 	tQueryFlags flags = kQueryFlagIgnore;
-	if( [STMAppDelegate get]->world == kCountry ) {
-        
+	if( [STMAppDelegate get]->world == kCountry ) 
+    {
 		flags = kQueryFlagByCountry;
     }
     
@@ -410,8 +413,8 @@
 }
 
 #pragma mark ScoreRequest Delegate
--(void) scoreRequestOk: (id) sender {
-    
+-(void) scoreRequestOk: (id) sender
+{
     [spinner stopAnimating];
 	NSLog(@"score request OK");	
 	NSArray *scores = [sender parseScores];	
@@ -425,21 +428,14 @@
     NSLog(@"\r\nScores retrieved: %@\r\n", [STMAppDelegate get]->globalScores);
     [self reloadTable];
     [self message:@"Scores downloaded"];
-    
-    /*
-     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Scores downloaded" message:@"Push the refresh button to view" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];	
-     alert.tag = 0;
-     [alert show];
-     [alert release];
-     */
 }
 
--(void) scoreRequestFail: (id) sender {
+-(void) scoreRequestFail: (id) sender 
+{
 	NSLog(@"score request fail");
     
     [spinner stopAnimating];
     [self message:@"Failed to download scores"];
-    //[self reloadTable];
     
     /*
      UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Score Request Failed" message:@"Please connect to the internet or try again later." delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];	

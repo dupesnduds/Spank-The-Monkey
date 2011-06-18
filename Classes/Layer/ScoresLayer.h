@@ -6,19 +6,21 @@
 //
 //	Last modified: 25/02/09
 //
+
+
 #import <UIKit/UIKit.h>
 #import "cocos2d.h"
 #import "Buttons.h"
 
 
-enum {
-    
+enum 
+{
 	kCellHeight = 22,
 };
 
 
-@interface ScoresLayer : Layer <UITableViewDelegate, UITableViewDataSource> {
-
+@interface ScoresLayer : Layer <UITableViewDelegate, UITableViewDataSource> 
+{
     Sprite * rf;
     Sprite * ds;
     
@@ -31,7 +33,9 @@ enum {
     UIActivityIndicatorView *spinner;
 }
 
+
 +(ScoresLayer *) get;
+
 
 -(void) positionDefaults;
 
@@ -45,5 +49,6 @@ enum {
 -(CGRect) rect:(Sprite *) item;
 
 -(void) requestScore;
+
 
 @end

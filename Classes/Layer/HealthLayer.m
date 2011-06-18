@@ -7,6 +7,7 @@
 //	Last modified: 25/02/09
 //
 
+
 #import "HealthLayer.h"
 #import "Star.h"
 #import "STMConfig.h"
@@ -15,28 +16,28 @@
 @implementation HealthLayer
 
 
--(void) dealloc {
-    
-    if(star1) {
-        
+-(void) dealloc 
+{
+    if(star1) 
+    {
         [star1 release];
         star1 = nil;
     }
     
-    if(star2) {
-        
+    if(star2) 
+    {
         [star2 release];
         star2 = nil;
     }
     
-    if(star3) {
-        
+    if(star3) 
+    {
         [star3 release];
         star3 = nil;
     }
     
-    if(star4) {
-        
+    if(star4) 
+    {
         [star4 release];
         star4 = nil;
     }
@@ -45,11 +46,11 @@
 }
 
 
-
-- (id) init {
+- (id) init 
+{
     self = [super init];
-    if (self != nil) {
-        
+    if (self != nil) 
+    {
         star1 = [[Star alloc] init];
         [self addChild:[star1 currentSprite] z:10 tag:kStarOne];
         
@@ -68,19 +69,10 @@
 }
 
 
--(void) positionDefaults {
-
+-(void) positionDefaults 
+{
     CGSize s = [[Director sharedDirector] winSize];
-    /*
-    int h = s.height-298;
-    int w = s.width-175;
-    
-    // 6 pixel spacing between objects
-    [[star1 currentSprite] setPosition:cpv(w, h)];
-    [[star2 currentSprite] setPosition:cpv(w+45, h)];
-    [[star3 currentSprite] setPosition:cpv(w+90, h)];
-    [[star4 currentSprite] setPosition:cpv(w+135, h)];
-    */
+
     int h = s.height-298;
     int w = s.width/2-29;
     
@@ -92,12 +84,13 @@
 }
 
 
--(void) changeStar:(int)n {
-    
+-(void) changeStar:(int)n 
+{
     //[self removeByTag:n];
     [self removeChildByTag:n cleanup:NO];
     
-    switch (n) {
+    switch (n) 
+    {
         case kStarOne:
             [star1 setCurrentState: YES];
             [self addChild:[star1 currentSprite] z:13 tag:n];
@@ -129,8 +122,8 @@
 }
 
 
--(void) morph:(Sprite *)s {
-    
+-(void) morph:(Sprite *)s 
+{
     [s runAction:[Sequence actions:[ScaleTo actionWithDuration: 0.5 scale:1.5f],[ScaleTo actionWithDuration: 0.5 scale:1.0f],nil]];
 }
 

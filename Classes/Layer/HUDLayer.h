@@ -7,6 +7,7 @@
 //	Last modified: 25/02/09
 //
 
+
 #import <UIKit/UIKit.h>
 #import "cocos2d.h"
 #import "HealthLayer.h"
@@ -18,8 +19,8 @@
 @class Menu;
 
 
-@interface HUDLayer : Layer {
-
+@interface HUDLayer : Layer 
+{
     HealthLayer * health;
     Sprite * hudMenu;
     

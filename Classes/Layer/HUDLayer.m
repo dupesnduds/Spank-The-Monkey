@@ -6,6 +6,7 @@
 //	Last modified: 25/02/09
 //
 
+
 #import "HUDLayer.h"
 #import "HealthLayer.h"
 #import "STMAppDelegate.h"
@@ -21,28 +22,28 @@
 @implementation HUDLayer
 
 
--(void) dealloc {
-    
-    if(health) {
-        
+-(void) dealloc 
+{
+    if(health) 
+    {
         [health release];
         health = nil;
     }
     
-    if(hudMenu) {
-        
+    if(hudMenu)
+    {
         [hudMenu release];
         hudMenu = nil;
     }
     
-    if(fx) {
-        
+    if(fx) 
+    {
         [fx release];
         fx = nil;
     }
     
-    if(thing) {
-        
+    if(thing) 
+    {
         [thing release];
         thing = nil;
     }
@@ -51,11 +52,11 @@
 }
 
 
-+(HUDLayer *) get {
-    
++(HUDLayer *) get 
+{
     static HUDLayer *instance;
-    if(!instance) {
-        
+    if(!instance) 
+    {
         instance = [[HUDLayer alloc] init];
     }
     
@@ -63,11 +64,11 @@
 }
 
 
-- (id) init {
+- (id) init 
+{
     self = [super init];
-    if (self != nil) {
-        
-        NSLog(@"  [%s:%d] ",__FUNCTION__,__LINE__);
+    if (self != nil) 
+    {
         isTouchEnabled = YES;
         
         [mm setCurrentState:NO];
@@ -90,15 +91,12 @@
 }
 
 
--(void) positionDefaults {
-    
+-(void) positionDefaults 
+{
     CGSize s = [[Director sharedDirector] winSize];
-    //int h = s.height/2;
-    //int w = s.width-s.width;
     int h = s.height;
     int w = s.width;
     
-    //[[fx currentSprite] setPosition:cpv(w+35, h*2 - 290)];
     [[fx currentSprite] setPosition:ccp(w-32, h/2-136)];
     [[thing currentSprite] setPosition:ccp(s.width-55, s.height-60)];
     [[mm currentSprite] setPosition: ccp([[mm currentSprite] contentSize].width/2+14, 20)];
@@ -106,8 +104,8 @@
 }
 
 
--(void) goMainMenu {
-    
+-(void) goMainMenu 
+{
     [STMConfig get]->b = YES;
     [[STMConfig get] setScore:0];
     
@@ -116,15 +114,15 @@
 }
 
 
--(void) changeStar:(int)n {
-    
+-(void) changeStar:(int)n 
+{
     NSLog(@"%d [%s:%d] ",n,__FUNCTION__,__LINE__);
     [health changeStar:n];
 }
 
 
--(void) changeSpeaker {
-	    
+-(void) changeSpeaker
+{
     [STMAppDelegate setEffectsEnabled: ![STMAppDelegate isEffectsEnabled]];
     [fx setCurrentState: [STMAppDelegate isEffectsEnabled]];
 
@@ -136,8 +134,8 @@
 }
 
 
--(void) changeThing {
-    
+-(void) changeThing 
+{
     [self removeChildByTag: kThing cleanup:NO];
         
     [self addChild:[thing currentSprite] z:14 tag:kThing];
@@ -148,8 +146,8 @@
 }
 
 
--(CGRect) rect:(Sprite *) item { 
-    
+-(CGRect) rect:(Sprite *) item
+{ 
     CGSize s = [item contentSize]; 
     
     CGRect r = CGRectMake( item.position.x - s.width/2, 
@@ -166,30 +164,32 @@
 }
 
 
-- (BOOL)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event { 
-    
-    for(UITouch *touch in touches) { 
-        
+- (BOOL)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event 
+{ 
+    for(UITouch *touch in touches)
+    { 
+
         CGPoint location = [touch locationInView: [touch view]];   
         location = [[Director sharedDirector] convertCoordinate: location];
         
-        for( Sprite *item in children ) { 
-            
-            if (item.tag != 0xFFFFFFFF) {
-                
-                if (CGRectContainsPoint([self rect:item], location)) { 
-                    
-                    if(item.tag == kFx) {
-                        
+        for( Sprite *item in children ) 
+        { 
+            if (item.tag != 0xFFFFFFFF) 
+            {
+                if (CGRectContainsPoint([self rect:item], location)) 
+                { 
+                    if(item.tag == kFx) 
+                    {
                         return kEventHandled;
                     }
                     
-                    if(item.tag == kThing) {
-                        
+                    if(item.tag == kThing) 
+                    {
                         return kEventHandled;
                     }
                     
-                    if(item.tag == kMainMenuG) {
+                    if(item.tag == kMainMenuG) 
+                    {
                         [[mm currentSprite] runAction:[ScaleTo actionWithDuration:0.1 scale:1.2f]];
                         return kEventHandled;
                     }
@@ -202,32 +202,35 @@
 }
 
 
-- (BOOL)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event { 
-    
-    for(UITouch *touch in touches) { 
-        
+- (BOOL)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event 
+{ 
+    for(UITouch *touch in touches)
+    { 
         CGPoint location = [touch locationInView: [touch view]];   
         location = [[Director sharedDirector] convertCoordinate: location];
         
-        for( Sprite *item in children ) { 
-            
-            if (item.tag != 0xFFFFFFFF) {
-                
-                if (CGRectContainsPoint([self rect:item], location)) { 
-
-                    if(item.tag == kFx) {
+        for( Sprite *item in children ) 
+        { 
+            if (item.tag != 0xFFFFFFFF) 
+            {
+                if (CGRectContainsPoint([self rect:item], location)) 
+                { 
+                    if(item.tag == kFx) 
+                    {
                         NSLog (@"Speaker Touched!"); 
                         [self changeSpeaker];
                         return kEventHandled;
                     }
                 
-                    if(item.tag == kThing) {
+                    if(item.tag == kThing)
+                    {
                         NSLog (@"Thing Touched!"); 
                         [self changeThing];
                         return kEventHandled;
                     }
                     
-                    if(item.tag == kMainMenuG) {
+                    if(item.tag == kMainMenuG) 
+                    {
                         [[mm currentSprite] runAction:[ScaleTo actionWithDuration:0.1 scale:1.0f]];
                         [STMAppDelegate playEffect:kEffectButton];
                         [self goMainMenu];

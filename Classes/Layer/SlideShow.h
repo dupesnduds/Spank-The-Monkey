@@ -1,12 +1,3 @@
-//
-//  SlideShow.h
-//  STM008
-//
-//  Created by Cleave Pokotea on 27/02/09.
-//  Copyright 2009-2011 Tumunu. All rights reserved.
-//
-
-
 /* 
  *  SlideShowLayer by Will Larson and Luke Hatcher. 10/29/2008.
  *  Released under MIT License.

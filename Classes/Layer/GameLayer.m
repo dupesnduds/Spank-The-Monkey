@@ -7,6 +7,7 @@
 //	Last modified: 25/02/09
 //
 
+
 #import "GameLayer.h"
 #import "STMConfig.h"
 #import "STMAppDelegate.h"
@@ -14,6 +15,7 @@
 #import "MonkeyLayer.h"
 #import "Timer.h"
 #import "HUDLayer.h"
+
 
 #define kAccelerationMaximum		2.0
 #define kAccelerationThreshold		2.2
@@ -31,22 +33,22 @@
 @synthesize ts, te;
 
 
--(void) dealloc {
-    
-    if(monkey) {
-        
+-(void) dealloc 
+{
+    if(monkey) 
+    {
         [monkey release];
         monkey = nil;
     }
     
-    if(timer) {
-        
+    if(timer) 
+    {
         [timer release];
         timer = nil;
     }
     
-    if(hud) {
-        
+    if(hud) 
+    {
         [hud release];
         hud = nil;
     }
@@ -65,18 +67,19 @@
 }
 
 
-double GetCurrentTime(void) {
-    
+double GetCurrentTime(void) 
+{
     struct timeval time;
     gettimeofday(&time, nil);
     return (double)time.tv_sec + (0.000001 * (double)time.tv_usec);
 }
 
 
-- (id) init {
+- (id) init 
+{
     self = [super init];
-    if (self != nil) {
-        
+    if (self != nil) 
+    {
         isTouchEnabled = YES;
         isAccelerometerEnabled = YES;
         CGSize s = [[Director sharedDirector] winSize];
@@ -84,8 +87,6 @@ double GetCurrentTime(void) {
         running = true;
         paused = false;
         
-        //clockLabel = [Label labelWithString:@"0:00:00" dimensions:CGSizeMake(s.width, 50) alignment:UITextAlignmentCenter fontName:@"Helvetica" fontSize:49];
-        //[clockLabel setPosition: cpv(100, s.height-40)];
         clockLabel = [Label labelWithString:@"00:00" dimensions:CGSizeMake(s.width, 50) alignment:UITextAlignmentCenter fontName:@"Helvetica" fontSize:49];
         [clockLabel setPosition: ccp(80, s.height-40)];
         [clockLabel setRGB:0:0:0];
@@ -130,23 +131,24 @@ double GetCurrentTime(void) {
 
 
 
-- (void)timerDidUpdate:(STMTimer *)atimer {
-    
-	//NSString *s = [NSString stringWithFormat:@"%@:%@:%@", [timer stringHours], [timer stringMinutes], [timer stringSeconds]];
+- (void)timerDidUpdate:(STMTimer *)atimer 
+{
     NSString *s = [NSString stringWithFormat:@"%@:%@", [timer stringMinutes], [timer stringSeconds]];
     [clockLabel setString:s];
 }
 
 
--(void) pause {
-    
-    if(!running) {
+-(void) pause 
+{
+    if(!running) 
+    {
         // Only allow toggling pause state while game is running.
         return;
     }
 
     // TODO: Change to gfx
-    if(!paused) {
+    if(!paused) 
+    {
         [self message:@"Paused"];
     }
     
@@ -156,15 +158,17 @@ double GetCurrentTime(void) {
 }
 
 
--(void) unpause {
-    
-    if(!running) {
+-(void) unpause 
+{
+    if(!running) 
+    {
         // Only allow toggling pause state while game is running.
         return;
     }
     
     // TODO: Change to gfx
-    if(paused) {
+    if(paused) 
+    {
         [self message:@"Unpaused!"];
     }
     
@@ -174,10 +178,10 @@ double GetCurrentTime(void) {
 }
 
 
--(void) stopGame {
-    
-    if(!running) {
-        
+-(void) stopGame 
+{
+    if(!running) 
+    {
         return;
     }
     
@@ -187,8 +191,8 @@ double GetCurrentTime(void) {
 }
 
 
--(void) stopped {
-    
+-(void) stopped 
+{
     paused = true;
     [self pause];
     
@@ -196,17 +200,12 @@ double GetCurrentTime(void) {
 }
 
 
--(void) message: (NSString *)msg {
-    
+-(void) message: (NSString *)msg 
+{
     NSLog(@"%@  [%s:%d] ",msg,__FUNCTION__,__LINE__);
     
-    if(!msgLabel) {
-        /*
-        msgLabel = [[Label alloc] initWithString:@"" dimensions:CGSizeMake(1000, [[STMConfig get] fontSize] + 5)
-                                       alignment:UITextAlignmentLeft
-                                        fontName:[[STMConfig get] fixedFontName]
-                                        fontSize: [[STMConfig get] fontSize]];
-         */
+    if(!msgLabel) 
+    {
         NSLog(@"msgLabel == false  [%s:%d] ",__FUNCTION__,__LINE__);
         msgLabel = [[Label alloc] initWithString:@"" dimensions:CGSizeMake(1000, 20 + 5)
                                        alignment:UITextAlignmentLeft
@@ -229,37 +228,39 @@ double GetCurrentTime(void) {
 }
 
 
--(void) resetMessage: (id) sender {
-    
+-(void) resetMessage: (id) sender 
+{
     [msgLabel stopAllActions];
     
     CGSize s = [[Director sharedDirector] winSize];
 
-    //[msgLabel setPosition:cpv([msgLabel contentSize].width / 2 + 55, s.height - 295)];
     [msgLabel setPosition:ccp([msgLabel contentSize].width / 2 + 20, s.height - s.height)];
     [msgLabel setOpacity:0xff];
     [msgLabel setVisible:false];
 }
 
 
-- (void)startTimer {
+- (void)startTimer 
+{
 	[timer start];
 }
 
-- (void)stopTimer {
+- (void)stopTimer 
+{
 	[timer stop];
 }
 
 
-- (void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration {
-	
-    if(running) {
+- (void)accelerometer:(UIAccelerometer *)accelerometer didAccelerate:(UIAcceleration *)acceleration 
+{
+    if(running)
+    {
         float startTime = GetCurrentTime();
         int randomComment = arc4random() % [comments count];
         
         // The usual threshold. More than this equates to the iPhone being dropped out of a window and smashing on the ground ;)
-        if (fabsf(acceleration.x) > kAccelerationThreshold || fabsf(acceleration.y) > kAccelerationThreshold || fabsf(acceleration.z) > kAccelerationThreshold) {
-            
+        if (fabsf(acceleration.x) > kAccelerationThreshold || fabsf(acceleration.y) > kAccelerationThreshold || fabsf(acceleration.z) > kAccelerationThreshold) 
+        {
             [self slap];
 
             float endTime = GetCurrentTime();
@@ -268,8 +269,8 @@ double GetCurrentTime(void) {
  
             [self adjustScore: s d:20];
         
-            if(shouldAction == 8) {
-            
+            if(shouldAction == 8) 
+            {
                 shouldAction = 0;
                 [self message:[comments objectAtIndex:randomComment]];
                 [STMAppDelegate playEffect:kEffectChatter];
@@ -284,8 +285,8 @@ double GetCurrentTime(void) {
             [self adjustScore: s d:15];
         
             [self slap];
-            if(shouldAction == 8) {
-            
+            if(shouldAction == 8) 
+            {
                 shouldAction = 0;
                 [self message:[comments objectAtIndex:randomComment]];
                 [STMAppDelegate playEffect:kEffectGasp];
@@ -316,8 +317,8 @@ double GetCurrentTime(void) {
             [self adjustScore: s d:5];
         
             [self slap];
-            if(shouldAction == 8) {
-            
+            if(shouldAction == 8) 
+            {
                 shouldAction = 0;
                 [self message:[comments objectAtIndex:randomComment]];
                 [STMAppDelegate playEffect:kEffectFart];
@@ -327,12 +328,12 @@ double GetCurrentTime(void) {
     }
 }
 
--(void) adjustScore:(int)velocity d:(int)d {
-    
+-(void) adjustScore:(int)velocity d:(int)d 
+{
     NSLog(@"\r\nAdjust score %d",[[STMConfig get] score]);
     
-    if ( [[STMConfig get] score] == 0 ) {
-        
+    if ( [[STMConfig get] score] == 0 ) 
+    {
         [[STMConfig get] setScore: velocity * d / 100];
         
     } else {
@@ -342,10 +343,10 @@ double GetCurrentTime(void) {
 }
 
 
--(void) slap {
-    
-    if([[STMConfig get] hitEffect]) {
-        
+-(void) slap 
+{
+    if([[STMConfig get] hitEffect]) 
+    {
         [STMAppDelegate playEffect:kEffectPunch];
 
     } else {
@@ -358,10 +359,10 @@ double GetCurrentTime(void) {
 }
 
 
--(void) step: (ccTime) delta {
-    
-    if ([[STMConfig get] score] > 500 && shouldUpdate==0) {
-        
+-(void) step: (ccTime) delta 
+{
+    if ([[STMConfig get] score] > 500 && shouldUpdate==0) 
+    {
         shouldUpdate++;
         [monkey monkeyJump];
         [STMAppDelegate playEffect:kEffectDing];

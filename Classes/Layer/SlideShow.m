@@ -1,10 +1,4 @@
-//
-//  SlideShow.m
-//  STM008
-//
-//  Created by Cleave Pokotea on 27/02/09.
-//  Copyright 2009-2011 Tumunu. All rights reserved.
-//
+
 
 #import "SlideShow.h"
 #import "cocos2d.h"

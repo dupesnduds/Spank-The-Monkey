@@ -7,6 +7,7 @@
 //	Last modified: 1/03/09
 //
 
+
 #import <UIKit/UIKit.h>
 #import "cocos2d.h"
 #import "AdMobDelegateProtocol.h";
@@ -18,8 +19,8 @@
 @class AdMobView;
 
 
-@interface MenuLayer : Layer <AdMobDelegate> {
-    
+@interface MenuLayer : Layer <AdMobDelegate> 
+{
     UIView *adContainer;
     AdMobView *adMobAd;   // the actual ad; self.view is the location where the ad will be placed
     NSTimer *autoslider; // timer to slide in fresh ads

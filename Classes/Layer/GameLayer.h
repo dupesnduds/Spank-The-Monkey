@@ -7,6 +7,7 @@
 //	Last modified: 25/02/09
 //
 
+
 #import <UIKit/UIKit.h>
 #import "cocos2d.h"
 #import "Timer.h"
@@ -14,9 +15,8 @@
 #import "HUDLayer.h"
 
 
-
-@interface GameLayer : Layer <TimerDelgate, UIAlertViewDelegate> {
-        
+@interface GameLayer : Layer <TimerDelgate, UIAlertViewDelegate> 
+{
     BOOL paused;
     BOOL running;
     

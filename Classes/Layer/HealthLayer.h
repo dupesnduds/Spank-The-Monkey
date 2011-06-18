@@ -7,13 +7,14 @@
 //	Last modified: 25/02/09
 //
 
+
 #import <UIKit/UIKit.h>
 #import "cocos2d.h"
 #import "Star.h"
 
 
-@interface HealthLayer : Layer {
-
+@interface HealthLayer : Layer 
+{
     Star * star1;
     Star * star2;
     Star * star3;

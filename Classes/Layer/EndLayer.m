@@ -1,11 +1,13 @@
 //
 //	Created by Cleave Pokotea on 2/03/09
 //
-//	Project: STM008
+//	Project: Spank The Monkey
 //	File: GameOver.m
 //
 //	Last modified: 2/03/09
 //
+
+
 #include <sys/time.h>
 #import "cocoslive.h"
 
@@ -15,19 +17,9 @@
 
 //#import "CocosNodeExtras.h"
 
-
 #define kMainMenu 0x00ff44
 #define kSave 0x00ff45
 #define kFB 0x00ff46
-
-
-// This application will not work until you enter your Facebook application's API key here:
-
-//static NSString* kApiKey = @"59c1ad3896fdb16ea391ee575ad42720";
-
-// Enter either your API secret or a callback URL (as described in documentation):
-//static NSString* kApiSecret = @"cf35541b9f675f73801fa027562518fb"; 
-
 
 
 @implementation EndLayer
@@ -36,22 +28,22 @@
 @synthesize currentState;
 
 
--(void) dealloc {
-    
-    if(loadingLabel) {
-        
+-(void) dealloc 
+{
+    if(loadingLabel) 
+    {
         [loadingLabel release];
         loadingLabel = nil;
     }
     
-    if(monkey) {
-        
+    if(monkey) 
+    {
         [monkey release];
         monkey = nil;
     }
     
-    if(finalRank) {
-        
+    if(finalRank) 
+    {
         [finalRank release];
     }
     
@@ -59,11 +51,11 @@
 }
 
 
-- (id) init {
-    
+- (id) init 
+{
     self = [super init];
-    if (self != nil) {
-        
+    if (self != nil) 
+    {
         isTouchEnabled = YES;
         [self setCurrentState:YES];
 
@@ -82,8 +74,8 @@
         [[STMConfig get] setScore:newScore];
         NSLog(@"Final score: %d",newScore);
         
-        if(!newScore) {
-            
+        if(!newScore) 
+        {
             newScore = 12;
         }
         
@@ -95,8 +87,8 @@
         [endLabel setRGB:75:52:41];
         [self addChild:endLabel];
         
-        if(newScore < 5000) {
-
+        if(newScore < 5000) 
+        {
             finalRank = [[NSString alloc] initWithString:@"MOUSE!"];
             [endLabel setString:@"You're kidding?"];
         } else if (newScore < 15000 && newScore > 5000) {
@@ -139,8 +131,8 @@
 }
 
 
--(void) positionDefaults {
-    
+-(void) positionDefaults 
+{
     [[mm currentSprite] setPosition: ccp([[mm currentSprite] contentSize].width/2+14, 20)];
     [monkey setPosition:ccp(-135,0)];
     
@@ -149,13 +141,14 @@
     
     rankLabel.position = ccp([scoreText length]/2+368,215);
     scoreLabel.position = ccp([scoreText length]/2+368,182);
-    endLabel.position = ccp([scoreText length]/2+368,145);}
+    endLabel.position = ccp([scoreText length]/2+368,145);
+}
 
 
--(void) onEnter {
-    
-    if(!spinner) {
-        
+-(void) onEnter 
+{
+    if(!spinner) 
+    {
         spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
         [spinner setCenter:CGPointMake(160, 240)]; // I do this because I'm in landscape mode
         [[[STMAppDelegate get] window] addSubview:spinner];
@@ -165,20 +158,21 @@
 }
 
 
--(BOOL)currentState {
-    
+-(BOOL)currentState 
+{
     return currentState;
 }
--(void) setCurrentState:(BOOL)b {
-    
+
+-(void) setCurrentState:(BOOL)b 
+{
 	currentState = b;
 }
 
 
--(void) goMainMenu {
-    
-    if(spinner) {
-        
+-(void) goMainMenu 
+{
+    if(spinner)
+    {
         [spinner removeFromSuperview];
         [spinner release];
     }
@@ -190,8 +184,8 @@
 }
 
 
--(void) preSend {
-    
+-(void) preSend 
+{
     [self setCurrentState:NO];    
 
     UIAlertView* dialog = [[[UIAlertView alloc] init] retain]; 
@@ -214,12 +208,12 @@
 }
 
 
--(void) message: (NSString *)msg {
-    
+-(void) message: (NSString *)msg 
+{
     NSLog(@"%@  [%s:%d] ",msg,__FUNCTION__,__LINE__);
     
-    if(!loadingLabel) {
-        
+    if(!loadingLabel) 
+    {
         NSLog(@"msgLabel == false  [%s:%d] ",__FUNCTION__,__LINE__);
         loadingLabel = [[Label alloc] initWithString:@"" dimensions:CGSizeMake(1000, 20 + 5)
                                            alignment:UITextAlignmentLeft
@@ -242,8 +236,8 @@
 }
 
 
--(void) resetMessage: (id) sender {
-    
+-(void) resetMessage: (id) sender 
+{
     [loadingLabel stopAllActions];   
     [loadingLabel setPosition:ccp([loadingLabel contentSize].width / 2 + [[mm currentSprite] contentSize].width+25, 5)];
     [loadingLabel setOpacity:0xff];
@@ -254,16 +248,16 @@
 
 #pragma mark -
 #pragma mark - UIAlertViewDelegate
-- (void)alertView:(UIAlertView *)view clickedButtonAtIndex:(NSInteger)buttonIndex {
-    
-    if (buttonIndex == 1) { // OK pushed
-        
+- (void)alertView:(UIAlertView *)view clickedButtonAtIndex:(NSInteger)buttonIndex 
+{
+    if (buttonIndex == 1) // OK pushed
+    { 
         [spinner startAnimating];
         [STMConfig get]->b = YES;
         [self setCurrentState:NO];    
         
-        if(![nameField text]) {
-            
+        if(![nameField text]) 
+        {
             [self postScore:@"John Doe" ];
         } else {
             
@@ -279,8 +273,8 @@
 
 
 #pragma mark -
--(void) postScore:(NSString *) name {
-    
+-(void) postScore:(NSString *) name 
+{
 	NSLog(@"Posting Score");
     [self message:@"Sending your score to our server"];
     
@@ -304,31 +298,25 @@
 
 #pragma mark -
 #pragma mark ScorePost Delegate
--(void) scorePostOk: (id) sender {
-    
+-(void) scorePostOk: (id) sender 
+{
 	NSLog(@"score post OK");
     [self message:@"Your score was added online"];
     [self setCurrentState:YES];    
     [spinner stopAnimating];
     so.visible = NO;
     [[STMConfig get] setScore:0];
-    
-    /*
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Sent OK" message:@"Your score was added online" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];	
-	alert.tag = 0;
-	[alert show];
-	[alert release];	
-    */
 }
 
--(void) scorePostFail: (id) sender {
-    
+-(void) scorePostFail: (id) sender 
+{
     [self setCurrentState:YES];    
     [spinner stopAnimating];
 	NSString *msg = nil;
 	tPostStatus status = [sender postStatus];
-	if( status == kPostStatusPostFailed ) {
-        
+    
+	if( status == kPostStatusPostFailed ) 
+    {
 		msg = @"Cross your fingers and retry sending";
 	} else if( status == kPostStatusConnectionFailed ) {
         
@@ -337,45 +325,40 @@
 	
 	NSLog(@"%@", msg);
     [self message:msg];
-    
-    /*
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Score Post Failed" message:message delegate:nil cancelButtonTitle:nil otherButtonTitles:@"OK", nil];	
-	alert.tag = 0;
-	[alert show];
-	[alert release];
-    */
 }
 
 
-- (BOOL)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event { 
-    
-    for(UITouch *touch in touches) { 
-        
+- (BOOL)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event 
+{ 
+    for(UITouch *touch in touches)
+    { 
         CGPoint location = [touch locationInView: [touch view]];   
         location = [[Director sharedDirector] convertCoordinate: location];
         
-        for( Sprite *item in children ) { 
-            
-            if (item.tag != 0xFFFFFFFF) {
-                
-                if (CGRectContainsPoint([self rect:item], location)) { 
-                    
-                    if(item.tag == kMainMenu) {
-                        
+        for( Sprite *item in children ) 
+        { 
+            if (item.tag != 0xFFFFFFFF) 
+            {
+                if (CGRectContainsPoint([self rect:item], location)) 
+                { 
+                    if(item.tag == kMainMenu) 
+                    {
                         NSLog(@"main menu touched");
 
-                        if(currentState) {
+                        if(currentState) 
+                        {
                             [STMAppDelegate playEffect:kEffectButton];
                             [self goMainMenu];
                             return kEventHandled;
                         }
                     }
                     
-                    if(item.tag == kSave) {
-                        
+                    if(item.tag == kSave) 
+                    {
                         NSLog(@"main menu touched");
                         
-                        if(currentState) {
+                        if(currentState) 
+                        {
                             [STMAppDelegate playEffect:kEffectButton];
                             [self preSend];
                             return kEventHandled;
@@ -390,8 +373,8 @@
 }
 
 
--(CGRect) rect:(Sprite *) item { 
-    
+-(CGRect) rect:(Sprite *) item 
+{ 
     CGSize s = [item contentSize]; 
     
     CGRect r = CGRectMake( item.position.x - s.width/2, 
