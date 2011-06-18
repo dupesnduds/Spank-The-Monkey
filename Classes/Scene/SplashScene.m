@@ -7,6 +7,7 @@
 //	Last modified: 15/02/09
 //
 
+
 #import "SplashScene.h"
 #import "SplashLayer.h"
 #import "StaticMethods.h"
@@ -27,7 +28,8 @@
 
     self = [super init];
     
-    if (self != nil) {        
+    if (self != nil)
+    {        
         Sprite *splash = [[SplashLayer alloc] init];
         [self addChild:splash];
         

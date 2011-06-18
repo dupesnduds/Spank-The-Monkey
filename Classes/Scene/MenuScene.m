@@ -7,6 +7,7 @@
 //	Last modified: 25/02/09
 //
 
+
 #import "MenuScene.h"
 #import "MenuLayer.h"
 #import "STMConfig.h"
@@ -15,17 +16,17 @@
 @implementation MenuScene
 
 
-- (void)dealloc {
-    
+- (void)dealloc
+{
     [super dealloc];
 }
 
 
-- (id) init {
-    
+- (id) init
+{
     self = [super init];
-    if (self != nil) {
-        
+    if (self != nil) 
+    {
         [Texture2D saveTexParameters];
         [Texture2D setAliasTexParameters];
         AtlasSpriteManager *mgrTwo = [AtlasSpriteManager spriteManagerWithFile:@"s_bkgnd_1.png" capacity:4];

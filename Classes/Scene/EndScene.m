@@ -1,11 +1,12 @@
 //
 //	Created by Cleave Pokotea on 2/03/09
 //
-//	Project: STM008
+//	Project: Spank The Monkey
 //	File: EndScene.m
 //
 //	Last modified: 2/03/09
 //
+
 
 #import "EndScene.h"
 #import "EndLayer.h"
@@ -14,10 +15,11 @@
 @implementation EndScene
 
 
-- (id) init {
+- (id) init
+{
     self = [super init];
-    if (self != nil) {
-
+    if (self != nil) 
+    {
         Sprite *bg = [Sprite spriteWithFile:@"l_end.png"];
         bg.position = ccp(240, 160);
         [self addChild:bg z:0];

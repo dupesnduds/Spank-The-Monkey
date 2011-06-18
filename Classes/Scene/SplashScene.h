@@ -7,12 +7,12 @@
 //	Last modified: 15/02/09
 //
 
+
 #import <UIKit/UIKit.h>
 #import "cocos2d.h"
 
 @interface SplashScene: Scene 
-{
-	
-}
+{}
+
 
 @end

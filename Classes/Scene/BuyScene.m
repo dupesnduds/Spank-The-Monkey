@@ -1,11 +1,12 @@
 //
 //	Created by Cleave Pokotea on 25/03/09
 //
-//	Project: STM009
+//	Project: Spank The Monkey
 //	File: BuyScene.m
 //
 //	Last modified: 25/03/09
 //
+
 
 #import "BuyScene.h"
 #import "BuyLayer.h"
@@ -17,11 +18,13 @@
 {
     self = [super init];
     
-    if (self != nil) {
+    if (self != nil) 
+    {
         BuyLayer *layer = [BuyLayer node];
 		[self addChild:layer];
     }
     return self;
 }
+
 
 @end

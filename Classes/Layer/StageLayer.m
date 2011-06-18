@@ -7,6 +7,7 @@
 //	Last modified: 25/02/09
 //
 
+
 #import "StageLayer.h"
 #import "Sun.h"
 #import "CloudLayer.h"
@@ -15,16 +16,16 @@
 @implementation StageLayer
 
 
--(void) dealloc {
-    
-    if(sun) {
-        
+-(void) dealloc 
+{
+    if(sun) 
+    {
         [sun release];
         sun = nil;
     }
     
-    if(clouds) {
-        
+    if(clouds) 
+    {
         [clouds release];
         clouds = nil;
     }
@@ -33,10 +34,11 @@
 }
 
 
-- (id) init {
+- (id) init
+{
     self = [super init];
-    if (self != nil) {
-        
+    if (self != nil)
+    {
         CGSize s = [[Director sharedDirector] winSize];
         sun = [[Sun alloc] init];
         [self addChild:sun z:10];

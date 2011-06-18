@@ -7,6 +7,7 @@
 //	Last modified: 15/02/09
 //
 
+
 #import "SplashLayer.h"
 #import "STMAppDelegate.h"
 #import "STMConfig.h"
@@ -14,13 +15,13 @@
 
 @implementation SplashLayer
 
-- (id) init {
-    
+- (id) init 
+{
     // NOTE: CHanged from Sprite to AtlasSprite 27/3/09
     //self = [super initWithFile:@"splash.png"];
     self = [super initWithRect:CGRectMake(0, 0, 85, 121) spriteManager: [[STMAppDelegate get] mgrTwo]];
-    if (self != nil) {
-        
+    if (self != nil) 
+    {
         [self setPosition:ccp([self contentSize].width / 2, [self contentSize].height / 2)];
         switching = NO;
     }
@@ -28,16 +29,18 @@
 }
 
 
--(void) onEnter {
+-(void) onEnter 
+{
     [super onEnter];
     [self schedule:@selector(switchScene:)];
 }
 
--(void) switchScene: (ccTime) dt {
-    @synchronized(self) {
-        
-        if(switching) {
-            
+-(void) switchScene: (ccTime) dt 
+{
+    @synchronized(self) 
+    {
+        if(switching) 
+        {
             return;
         }
         

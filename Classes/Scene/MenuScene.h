@@ -7,13 +7,13 @@
 //	Last modified: 25/02/09
 //
 
+
 #import <UIKit/UIKit.h>
 #import "cocos2d.h"
 
 
-@interface MenuScene : Scene {
-	
-}
+@interface MenuScene : Scene 
+{}
 
 
 @end

@@ -1,23 +1,25 @@
 //
 //	Created by Cleave Pokotea on 25/03/09
 //
-//	Project: STM009
+//	Project: Spank The Monkey
 //	File: BuyLayer.m
 //
 //	Last modified: 25/03/09
 //
+
 
 #import "BuyLayer.h"
 
 
 @implementation BuyLayer
 
-- (id) init {
+- (id) init 
+{
     self = [super init];
-    if (self != nil) {
-       
-    }
+    if (self != nil) 
+    {}
     return self;
 }
+
 
 @end

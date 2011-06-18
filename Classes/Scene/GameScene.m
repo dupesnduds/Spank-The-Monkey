@@ -7,6 +7,7 @@
 //	Last modified: 25/02/09
 //
 
+
 #import "GameScene.h"
 #import "GameLayer.h"
 #import "StageLayer.h"
@@ -15,16 +16,17 @@
 @implementation GameScene
 
 
-- (void)dealloc {
-    
+- (void)dealloc
+{
     [super dealloc];
 }
 
 
-- (id) init {
-    
+- (id) init
+{
     self = [super init];
-    if (self != nil) {
+    if (self != nil)
+    {
         //*
         Sprite *bg = [Sprite spriteWithFile:@"l_game.png"];
         bg.position = ccp(240, 160);

@@ -7,6 +7,7 @@
 //	Last modified: 25/02/09
 //
 
+
 #import <UIKit/UIKit.h>
 #import "cocos2d.h"
 #import "Body.h"
@@ -14,8 +15,8 @@
 #import "HitHead.h"
 
 
-@interface MonkeyLayer : Layer {
-    
+@interface MonkeyLayer : Layer
+{
     CGSize s;
     BOOL currentState;
     Body * body;

@@ -1,7 +1,7 @@
 //
 //	Created by Cleave Pokotea on 27/02/09
 //
-//	Project: STM008
+//	Project: Spank The Monkey
 //	File: Object.h
 //
 //	Last modified: 27/02/09

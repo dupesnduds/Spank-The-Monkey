@@ -7,6 +7,7 @@
 //	Last modified: 25/02/09
 //
 
+
 #import "MonkeyLayer.h"
 #import "Body.h"
 #import "NormalHead.h"
@@ -20,19 +21,22 @@
 @synthesize hh;
 
 
--(void) dealloc {
-    
-    if(nh) {
+-(void) dealloc 
+{
+    if(nh) 
+    {
         [nh release];
         nh = nil;
     }
     
-    if(hh) {
+    if(hh) 
+    {
         [hh release];
         hh = nil;
     }
     
-    if(body) {
+    if(body)
+    {
         [body release];
         body = nil;
     }
@@ -41,10 +45,11 @@
 }
 
 
-- (id) init {
+- (id) init 
+{
     self = [super init];
-    if (self != nil) {
-        
+    if (self != nil)
+    {
         s = [[Director sharedDirector] winSize];
         
         body = [[Body alloc] init];
@@ -65,16 +70,16 @@
 }
 
 
--(void) positionDefaults {
-
+-(void) positionDefaults 
+{
     [nh setPosition:ccp(s.width/2, s.height/2+10)];
     [hh setPosition:ccp(s.width/2, s.height/2+10)];
     [body setPosition:ccp(s.width/2, s.height/2-80)];
 }
 
 
--(Sprite *)currentHead {
-    
+-(Sprite *)currentHead 
+{
     NSLog(@"%d  [%s:%d] ",currentState,__FUNCTION__,__LINE__);
     if(currentState) {
         
@@ -87,8 +92,8 @@
 }
 
 
--(BOOL)currentState {
-    
+-(BOOL)currentState 
+{
     return currentState;
 }
 -(void) setCurrentState:(BOOL)b {
@@ -97,7 +102,8 @@
 }
 
 
--(void) monkeyJump {
+-(void) monkeyJump 
+{
     NSLog(@" [%s:%d] ",__FUNCTION__,__LINE__);
     [body stopAllActions];
     [[self currentHead] stopAllActions];
@@ -107,8 +113,8 @@
 }
 
 
--(void) monkeyScale {
-    
+-(void) monkeyScale 
+{
     [body runAction:[Sequence actions:
                 [MoveTo actionWithDuration: 0.1 position:ccp(s.width/2, s.height/2-50)],
                 [MoveTo actionWithDuration: 0.1 position:ccp(s.width/2, s.height/2-80)],
@@ -123,8 +129,8 @@
 }
 
 
--(void) monkeyMove {
-    
+-(void) monkeyMove 
+{
     id jump = [JumpBy actionWithDuration:2 position:ccp(10,0) height:15 jumps:4];
 	id action = [Sequence actions: jump, [jump reverse], nil];
 	
@@ -133,7 +139,8 @@
 }
 
 
--(void) monkeyWin {
+-(void) monkeyWin 
+{
     NSLog(@" [%s:%d] ",__FUNCTION__,__LINE__);
     [body stopAllActions];
     [[self currentHead] stopAllActions];

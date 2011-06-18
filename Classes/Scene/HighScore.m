@@ -7,6 +7,7 @@
 //	Last modified: 25/02/09
 //
 
+
 #import "HighScore.h"
 #import "ScoresLayer.h"
 #import "STMConfig.h"
@@ -14,10 +15,11 @@
 
 @implementation HighScore
 
-- (id) init {
+- (id) init 
+{
     self = [super init];
-    if (self != nil) {
-
+    if (self != nil) 
+    {
         [Texture2D saveTexParameters];
         [Texture2D setAliasTexParameters];
         AtlasSpriteManager *mgrTwo = [AtlasSpriteManager spriteManagerWithFile:@"s_bkgnd_1.png" capacity:4];

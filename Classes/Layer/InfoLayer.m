@@ -1,11 +1,12 @@
 //
 //	Created by Cleave Pokotea on 9/03/09
 //
-//	Project: STM009
+//	Project: Spank The Monkey
 //	File: InfoLayer.m
 //
 //	Last modified: 9/03/09
 //
+
 
 #import "InfoLayer.h"
 #import "STMAppDelegate.h"
@@ -26,11 +27,12 @@
 @implementation InfoLayer
 
 
-- (id) init {
+- (id) init
+{
     self = [super init];
     
-    if (self != nil) {
-        
+    if (self != nil)
+    {
         isTouchEnabled = YES;
         
         [mm setCurrentState:YES];
@@ -44,14 +46,14 @@
 }
 
 
--(void) positionDefaults {
-
+-(void) positionDefaults 
+{
     [[mm currentSprite] setPosition: ccp([[mm currentSprite] contentSize].width/2+14, 20)];
 }
 
 
--(void) goMainMenu {
-    
+-(void) goMainMenu 
+{
     [STMConfig get]->b = YES;
     [[STMConfig get] setScore:0];
     
@@ -63,21 +65,21 @@
 }
 
 
-- (BOOL)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event { 
-    
-    for(UITouch *touch in touches) { 
-        
+- (BOOL)ccTouchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{ 
+    for(UITouch *touch in touches) 
+    { 
         CGPoint location = [touch locationInView: [touch view]];   
         location = [[Director sharedDirector] convertCoordinate: location];
         
-        for( Sprite *item in children ) { 
-            
-            if (item.tag != 0xFFFFFFFF) {
-                
-                if (CGRectContainsPoint([self rect:item], location)) { 
-                    
-                    if(item.tag == kMainMenu) {
-                                                
+        for( Sprite *item in children )
+        { 
+            if (item.tag != 0xFFFFFFFF) 
+            {
+                if (CGRectContainsPoint([self rect:item], location)) 
+                { 
+                    if(item.tag == kMainMenu) 
+                    {
                         [[mm currentSprite] runAction:[ScaleTo actionWithDuration:0.1 scale:1.2f]];
                         return kEventHandled;
                     }
@@ -91,21 +93,21 @@
 
 
 
-- (BOOL)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event { 
-    
-    for(UITouch *touch in touches) { 
-        
+- (BOOL)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event 
+{ 
+    for(UITouch *touch in touches) 
+    { 
         CGPoint location = [touch locationInView: [touch view]];   
         location = [[Director sharedDirector] convertCoordinate: location];
         
-        for( Sprite *item in children ) { 
-            
-            if (item.tag != 0xFFFFFFFF) {
-                
-                if (CGRectContainsPoint([self rect:item], location)) { 
-                    
-                    if(item.tag == kMainMenu) {
-                                                
+        for( Sprite *item in children ) 
+        { 
+            if (item.tag != 0xFFFFFFFF) 
+            {
+                if (CGRectContainsPoint([self rect:item], location)) 
+                { 
+                    if(item.tag == kMainMenu) 
+                    {
                         [[mm currentSprite] runAction:[ScaleTo actionWithDuration:0.1 scale:1.0f]];
                         [self goMainMenu];
                         return kEventHandled;
@@ -119,8 +121,8 @@
 }
 
 
--(CGRect) rect:(Sprite *) item { 
-    
+-(CGRect) rect:(Sprite *) item 
+{ 
     CGSize s = [item contentSize]; 
     
     CGRect r = CGRectMake( item.position.x - s.width/2, 

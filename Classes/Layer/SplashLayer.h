@@ -7,13 +7,15 @@
 //	Last modified: 15/02/09
 //
 
+
 #import <UIKit/UIKit.h>
 #import "cocos2d.h"
 
-@interface SplashLayer : AtlasSprite {
-    
+@interface SplashLayer : AtlasSprite 
+{
 	BOOL switching;
 }
+
 
 @end
 

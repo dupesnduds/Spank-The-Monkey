@@ -1,11 +1,12 @@
 //
 //	Created by Cleave Pokotea on 9/03/09
 //
-//	Project: STM009
+//	Project: Spank The Monkey
 //	File: InfoScene.m
 //
 //	Last modified: 9/03/09
 //
+
 
 #import "InfoScene.h"
 #import "InfoLayer.h"
@@ -19,8 +20,8 @@
 {
     self = [super init];
     
-    if (self != nil) {
-        
+    if (self != nil) 
+    {
         //[Texture2D saveTexParameters];
         //[Texture2D setAliasTexParameters];
         AtlasSpriteManager *mgrTwo = [AtlasSpriteManager spriteManagerWithFile:@"s_bkgnd_1.png" capacity:4];
@@ -36,6 +37,7 @@
     }
     return self;
 }
+
 
 @end
 
