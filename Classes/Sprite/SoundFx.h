@@ -7,17 +7,19 @@
 //	Last modified: 26/02/09
 //
 
+
 #import <UIKit/UIKit.h>
 #import "cocos2d.h"
 
 
-@interface SoundFx : NSObject {
-    
+@interface SoundFx : NSObject 
+{
     NSString * name;
     BOOL currentState;
     Sprite * mute;
     Sprite * on;
 }
+
 
 @property (readwrite, retain) NSString * name;
 @property (readwrite, assign) BOOL currentState;

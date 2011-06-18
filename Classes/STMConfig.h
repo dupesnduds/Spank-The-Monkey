@@ -6,10 +6,12 @@
 //  Copyright 2009-2011 Tumunu. All rights reserved.
 //
 
+
 #import "cocos2d.h"
 
 
-enum {
+enum 
+{
 	kTagTileMap = 1,
 	kTagSpriteManagerOne = 1,
     kTagSpriteManagerTwo = 1,
@@ -17,7 +19,8 @@ enum {
 };
 
 
-enum { 
+enum
+{ 
     kStars = 0xaabbcc00, 
     kStarOne = kStars | 0x01, 
     kStarTwo = kStars | 0x02,
@@ -27,8 +30,8 @@ enum {
 }; 
 
 
-@interface STMConfig : NSObject {
-    
+@interface STMConfig : NSObject 
+{
     @public BOOL b;
     NSUserDefaults * defaults;
 }

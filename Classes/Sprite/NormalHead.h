@@ -7,10 +7,12 @@
 //	Last modified: 25/02/09
 //
 
+
 #import <UIKit/UIKit.h>
 #import "cocos2d.h"
 
-@interface NormalHead : Sprite {
+@interface NormalHead : Sprite 
+{
 	Animation *nhAnimation;
 	
 	int frameCount;

@@ -7,6 +7,7 @@
 //	Last modified: 25/02/09
 //
 
+
 #import "HitHead.h"
 
 
@@ -16,17 +17,19 @@
 @synthesize hhAnimation;
 
 
-- (void) dealloc {
-    
+- (void) dealloc 
+{
 	[hhAnimation release];
 	[super dealloc];
 }
 
 
--(id) init {
+-(id) init
+{
 	self = [super init];
 	
-	if (self) {
+	if (self) 
+    {
         //*
 		//init the counter that will be incremented to tell what frame of the animation we are on
 		frameCount = 0;
@@ -58,7 +61,8 @@
 
 
 //*
--(void) tick: (ccTime) dt {	
+-(void) tick: (ccTime) dt
+{	
     
 	//reset frame counter if its past the total frames
 	if(frameCount > 5) frameCount = 0;
@@ -70,5 +74,6 @@
 	frameCount = frameCount+1;
 }
 //*/
+
 
 @end

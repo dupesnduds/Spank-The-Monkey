@@ -5,6 +5,8 @@
 //  Created by Cleave Pokotea on 25/02/09.
 //  Copyright Tumunu 2009-2011. All rights reserved.
 //
+
+
 #include <sys/time.h>
 #import "cocoslive.h"
 
@@ -27,7 +29,6 @@
 #define kUpdateInterval (1.0f/10.0f)
 
 
-
 /* 
  * Static members related to sound effects and background music 
  */
@@ -48,18 +49,18 @@ static UInt32 sounds[kNumEffects];		// References to the loaded sound effects
 
 -(void)dealloc 
 {
-    if(mgrOne) {
-        
+    if(mgrOne) 
+    {
         [mgrOne release];
     }
     
-    if(mgrTwo) {
-        
+    if(mgrTwo)
+    {
         [mgrTwo release];
     }
     
-    if(bkgnds) {
-        
+    if(bkgnds)
+    {
         [bkgnds release];
     }
     

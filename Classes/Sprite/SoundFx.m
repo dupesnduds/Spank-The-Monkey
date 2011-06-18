@@ -7,6 +7,7 @@
 //	Last modified: 26/02/09
 //
 
+
 #import "SoundFx.h"
 
 
@@ -18,19 +19,22 @@
 @synthesize on;
 
 
--(void) dealloc {
-    
-    if(name) {
+-(void) dealloc 
+{
+    if(name) 
+    {
         [name release];
         name = nil;
     }
     
-    if(mute) {
+    if(mute) 
+    {
         [mute release];
         mute = nil;
     }
     
-    if(on) {
+    if(on) 
+    {
         [on release];
         on = nil;
     }
@@ -39,10 +43,11 @@
 }
 
 
-- (id) init {
+- (id) init
+{
     self = [super init];
-    if (self != nil) {
-        
+    if (self != nil)
+    {
         [self setCurrentState: YES];        
         mute = [[Sprite spriteWithFile:@"sound_mute.png"] retain]; 
         on = [[Sprite spriteWithFile:@"sound.png"] retain]; 
@@ -52,10 +57,10 @@
 }
 
 
--(Sprite *)currentSprite {
-    
-    if(currentState) {
-        
+-(Sprite *)currentSprite
+{
+    if(currentState)
+    {
         return on;
     } else {
         
@@ -64,12 +69,13 @@
 }
 
 
--(BOOL)currentState {
-    
+-(BOOL)currentState
+{
     return currentState;
 }
--(void) setCurrentState:(BOOL)b {
-    
+
+-(void) setCurrentState:(BOOL)b 
+{
 	currentState = b;
 }
 

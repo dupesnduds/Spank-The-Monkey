@@ -7,12 +7,13 @@
 //	Last modified: 25/02/09
 //
 
+
 #import <UIKit/UIKit.h>
 #import "cocos2d.h"
 
 
-@interface Sun : Sprite {
-
+@interface Sun : Sprite 
+{
     NSString * name;
 
 }

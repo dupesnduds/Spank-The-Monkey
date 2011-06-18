@@ -6,6 +6,7 @@
 //  Copyright 2009-2011 Tumunu. All rights reserved.
 //
 
+
 #import "STMConfig.h"
 #import "cocos2d.h"
 #import "STMAppDelegate.h"
@@ -28,10 +29,11 @@
 @implementation STMConfig
 
 
-- (id) init {
+- (id) init 
+{
     self = [super init];
-    if (self != nil) {
-        
+    if (self != nil)
+    {
         defaults = [[NSUserDefaults standardUserDefaults] retain];
         
         [defaults registerDefaults:[NSDictionary dictionaryWithObjectsAndKeys:
@@ -56,11 +58,11 @@
 }
 
 
-+(STMConfig *) get {
-    
++(STMConfig *) get 
+{
     static STMConfig *instance;
-    if(!instance) {
-        
+    if(!instance) 
+    {
         instance = [[STMConfig alloc] init];
     }
     
@@ -68,103 +70,105 @@
 }
 
 
--(float) stmScale {
-    
+-(float) stmScale
+{
     return 0.4f;
 }
 
 
 #pragma mark Fonts
--(int) fontSize {
-    
+-(int) fontSize
+{
     return [defaults integerForKey: kFontSize];
 }
--(void) setFontSize: (int)fontSize {
-    
+-(void) setFontSize: (int)fontSize 
+{
     [defaults setInteger:fontSize forKey: kFontSize];
 }
 
 
--(int) smallFontSize {
-    
+-(int) smallFontSize
+{
     return [defaults integerForKey: kSmallFontSize];
 }
--(void) setSmallFontSize: (int)smallFontSize {
-    
+-(void) setSmallFontSize: (int)smallFontSize
+{
     [defaults setInteger:smallFontSize forKey: kSmallFontSize];
 }
 
 
--(int) timerFontSize {
-    
+-(int) timerFontSize 
+{
     return [defaults integerForKey: kTimerFontSize];
 }
--(void) setTimerFontSize: (int)timerFontSize {
-    
+-(void) setTimerFontSize: (int)timerFontSize 
+{
     [defaults setInteger:timerFontSize forKey: kTimerFontSize];
 }
 
 
--(NSString *) fontName {
-    
+-(NSString *) fontName 
+{
     return [defaults stringForKey: kFontName];
 }
--(void) setFontName: (NSString *)fontName {
-    
+-(void) setFontName: (NSString *)fontName
+{
     [defaults setObject:fontName forKey: kFontName];
 }
 
 
--(NSString *) fixedFontName {
-    
+-(NSString *) fixedFontName 
+{
     return [defaults stringForKey: kFixedFontName];
 }
--(void) setFixedFontName: (NSString *)fixedFontName {
-    
+-(void) setFixedFontName: (NSString *)fixedFontName 
+{
     [defaults setObject:fixedFontName forKey: kFixedFontName];
 }
 
 
--(NSString *) timerFontName {
-    
+-(NSString *) timerFontName 
+{
     return [defaults stringForKey: kTimerFontName];
 }
--(void) setTimerFontName: (NSString *)timerFontName {
-    
+-(void) setTimerFontName: (NSString *)timerFontName 
+{
     [defaults setObject:timerFontName forKey: kTimerFontName];
 }
 
 
 #pragma mark Other bits & pieces
--(ccTime) transitionDuration {
-    
+-(ccTime) transitionDuration 
+{
     return [defaults floatForKey: kTransitionDuration];
 }
--(void) setTransitionDuration: (ccTime)transitionDuration {
-    
+-(void) setTransitionDuration: (ccTime)transitionDuration 
+{
     [defaults setFloat:transitionDuration forKey: kTransitionDuration];
 }
 
 
--(int) score {
-    
-    if (![[NSUserDefaults standardUserDefaults] valueForKey:kScore]) {
-        
+-(int) score 
+{
+    if (![[NSUserDefaults standardUserDefaults] valueForKey:kScore]) 
+    {
         NSLog(@"is not yet defined [%s:%d] ",__FUNCTION__,__LINE__);
     }
     
     return [defaults integerForKey: kScore];
 }
--(void) setScore: (int)n {
-
-
-    if(n < 0 || n==0) {
-        
+-(void) setScore: (int)n 
+{
+    if(n < 0 || n==0)
+    {
             n = 0;   
     } else {
-        if(b) {
+        
+        if(b) 
+        {
             n = [self score] + n;
         } else {
+            
             n = n;
         }
     }
@@ -176,20 +180,20 @@
 
 
 
--(int) bonus {
-    
-    if (![[NSUserDefaults standardUserDefaults] valueForKey:kBonus]) {
-        
+-(int) bonus 
+{
+    if (![[NSUserDefaults standardUserDefaults] valueForKey:kBonus])
+    {
         NSLog(@"is not yet defined [%s:%d] ",__FUNCTION__,__LINE__);
     }
     
     return [defaults integerForKey: kBonus];
 }
--(void) setBonus: (int)n {
-    
+-(void) setBonus: (int)n
+{
     b = NO;
-    if(n < 0 || n==0) {
-        
+    if(n < 0 || n==0)
+    {
         n = 0;   
     }
     
@@ -198,12 +202,12 @@
 }
 
 
--(BOOL) hitEffect {
-    
+-(BOOL) hitEffect
+{
     return [defaults boolForKey: kHitEffect];
 }
--(void) setHitEffect: (BOOL)nEffects {
-    
+-(void) setHitEffect: (BOOL)nEffects 
+{
     [defaults setBool:nEffects forKey: kHitEffect];
 }
 

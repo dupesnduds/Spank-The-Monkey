@@ -7,6 +7,7 @@
 //	Last modified: 27/02/09
 //
 
+
 #import <UIKit/UIKit.h>
 #import "cocos2d.h"
 
@@ -21,13 +22,14 @@ enum {
 */
 
 
-@interface Thing : NSObject {
-    
+@interface Thing : NSObject
+{
     NSString * name;
     BOOL currentState;
     Sprite * paddle;
     Sprite * glove;
 }
+
 
 @property (readwrite, retain) NSString * name;
 @property (readwrite, assign) BOOL currentState;

@@ -1,10 +1,11 @@
 //
 //  Buttons.m
-//  STM009
+//  Spanking The Monkey
 //
 //  Created by Cleave Pokotea on 9/03/09.
 //  Copyright 2009-2011 Tumunu. All rights reserved.
 //
+
 
 #import "Buttons.h"
 
@@ -16,14 +17,16 @@
 @synthesize mm_green;
 
 
--(void) dealloc {
-    
-    if(mm_normal) {
+-(void) dealloc 
+{
+    if(mm_normal) 
+    {
         [mm_normal release];
         mm_normal = nil;
     }
     
-    if(mm_green) {
+    if(mm_green) 
+    {
         [mm_green release];
         mm_green = nil;
     }
@@ -32,10 +35,11 @@
 }
 
 
-- (id) init {
+- (id) init 
+{
     self = [super init];
-    if (self != nil) {
-        
+    if (self != nil)
+    {
         [self setCurrentState: YES];        
         mm_normal = [[Sprite spriteWithFile:@"b_mainmenu.png"] retain]; 
         mm_green = [[Sprite spriteWithFile:@"b_mainmenu_g.png"] retain]; 
@@ -45,10 +49,10 @@
 }
 
 
--(Sprite *)currentSprite {
-    
-    if(currentState) {
-        
+-(Sprite *)currentSprite 
+{
+    if(currentState)
+    {
         return mm_normal;
     } else {
         
@@ -57,12 +61,13 @@
 }
 
 
--(BOOL)currentState {
-    
+-(BOOL)currentState 
+{
     return currentState;
 }
--(void) setCurrentState:(BOOL)b {
-    
+
+-(void) setCurrentState:(BOOL)b
+{
 	currentState = b;
 }
 

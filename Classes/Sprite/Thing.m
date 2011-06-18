@@ -7,6 +7,7 @@
 //	Last modified: 27/02/09
 //
 
+
 #import "Thing.h"
 
 
@@ -19,19 +20,22 @@
 @synthesize glove;
 
 
--(void) dealloc {
-    
-    if(name) {
+-(void) dealloc
+{
+    if(name) 
+    {
         [name release];
         name = nil;
     }
     
-    if(paddle) {
+    if(paddle)
+    {
         [paddle release];
         paddle = nil;
     }
     
-    if(glove) {
+    if(glove) 
+    {
         [glove release];
         glove = nil;
     }
@@ -40,10 +44,11 @@
 }
 
 
-- (id) init {
+- (id) init 
+{
     self = [super init];
-    if (self != nil) {
-        
+    if (self != nil) 
+    {
         NSLog(@"%d  [%s:%d] ",[self currentState],__FUNCTION__,__LINE__);
         [self setCurrentState:YES];
         paddle = [[Sprite spriteWithFile:@"paddle.png"] retain]; 
@@ -54,11 +59,11 @@
 }
 
 
--(Sprite *) currentSprite {
-    
+-(Sprite *) currentSprite 
+{
     NSLog(@"currentState: %d  [%s:%d] ",currentState,__FUNCTION__,__LINE__);
-    if(currentState) {
-        
+    if(currentState) 
+    {
         return paddle;
     } else {
         
@@ -67,13 +72,15 @@
 }
 
 
--(BOOL)currentState {
-    
+-(BOOL)currentState 
+{
     return currentState;
 }
--(void) setCurrentState:(BOOL)b {
-    
+
+-(void) setCurrentState:(BOOL)b 
+{
 	currentState = b;
 }
+
 
 @end

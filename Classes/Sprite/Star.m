@@ -7,6 +7,7 @@
 //	Last modified: 25/02/09
 //
 
+
 #import "Star.h"
 
 
@@ -19,19 +20,22 @@
 @synthesize full;
 
 
--(void) dealloc {
-    
-    if(name) {
+-(void) dealloc 
+{
+    if(name) 
+    {
         [name release];
         name = nil;
     }
     
-    if(empty) {
+    if(empty) 
+    {
         [empty release];
         empty = nil;
     }
     
-    if(full) {
+    if(full) 
+    {
         [full release];
         full = nil;
     }
@@ -40,10 +44,11 @@
 }
 
 
-- (id) init {
+- (id) init 
+{
     self = [super init];
-    if (self != nil) {
-        
+    if (self != nil)
+    {
         [self setCurrentState: NO];
         NSLog(@"%d  [%s:%d] ",[self currentState],__FUNCTION__,__LINE__);
         
@@ -55,11 +60,11 @@
 }
 
 
--(Sprite *)currentSprite {
-    
+-(Sprite *)currentSprite
+{
     //NSLog(@"%d  [%s:%d] ",currentState,__FUNCTION__,__LINE__);
-    if(currentState) {
-        
+    if(currentState)
+    {
         return full;
     } else {
         
@@ -68,14 +73,14 @@
 }
 
 
--(BOOL)currentState {
-    
+-(BOOL)currentState 
+{
     return currentState;
 }
 
 
--(void) setCurrentState:(BOOL)b {
-    
+-(void) setCurrentState:(BOOL)b 
+{
 	currentState = b;
 }
 

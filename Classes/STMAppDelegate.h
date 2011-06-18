@@ -6,6 +6,7 @@
 //  Copyright Tumunu 2009-2011. All rights reserved.
 //
 
+
 #import <UIKit/UIKit.h>
 #import "cocoslive.h"
 #import "cocos2d.h"
@@ -18,7 +19,8 @@
  * additional scenes here if you are going to use the central
  * 
  */
-enum {
+enum 
+{
     kSplash = 0,
 	kSceneMenu,         // Main Menu Scene
     kSceneGame,         // Game Scene
@@ -36,7 +38,8 @@ enum {
  * play the cached sound effect.  Sound effects are all loaded
  * during initialization.
  */
-typedef enum {
+typedef enum 
+{
 	kEffectFart = 0,
 	kEffectDing,
 	kEffectChatter,		
@@ -56,21 +59,22 @@ typedef enum {
 } Effect;
 
 
-enum {
+enum 
+{
 	kCategoryShake = 0,
 };
 
 
-enum {
+enum 
+{
 	kWorld = 0,
 	kCountry = 1,
 };
 
 
 
-
-@interface STMAppDelegate : NSObject <UIAccelerometerDelegate, UIAlertViewDelegate, UITextFieldDelegate, UIApplicationDelegate> {
-    
+@interface STMAppDelegate : NSObject <UIAccelerometerDelegate, UIAlertViewDelegate, UITextFieldDelegate, UIApplicationDelegate> 
+{
 	@public UIWindow *window;
     
     // scores category
@@ -84,6 +88,7 @@ enum {
     AtlasSpriteManager *mgrTwo;
     AtlasSprite * bkgnds;
 }
+
 
 @property (nonatomic, retain) UIWindow *window;
 @property (nonatomic, retain) NSMutableArray *globalScores;

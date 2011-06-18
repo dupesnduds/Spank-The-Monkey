@@ -7,17 +7,19 @@
 //	Last modified: 25/02/09
 //
 
+
 #import <UIKit/UIKit.h>
 #import "cocos2d.h"
 
 
-@interface Star : NSObject {
-    
+@interface Star : NSObject 
+{
     NSString * name;
     BOOL currentState;
     Sprite * empty;
     Sprite * full;
 }
+
 
 @property (readwrite, retain) NSString * name;
 @property (readwrite, assign) BOOL currentState;
@@ -28,5 +30,6 @@
 
 -(BOOL)currentState;
 -(void)setCurrentState:(BOOL)b;
+
 
 @end

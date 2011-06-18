@@ -7,10 +7,12 @@
 //	Last modified: 25/02/09
 //
 
+
 #import <UIKit/UIKit.h>
 #import "cocos2d.h"
 
-@interface HitHead : Sprite {
+@interface HitHead : Sprite 
+{
 	Animation *hhAnimation;
 	
 	int frameCount;

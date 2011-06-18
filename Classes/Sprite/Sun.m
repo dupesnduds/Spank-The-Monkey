@@ -7,6 +7,7 @@
 //	Last modified: 25/02/09
 //
 
+
 #import "Sun.h"
 #import "STMConfig.h"
 
@@ -17,9 +18,10 @@
 @synthesize name;
 
 
--(void) dealloc {
-    
-    if(name) {
+-(void) dealloc
+{
+    if(name) 
+    {
         [name release];
         name = nil;
     }
@@ -28,10 +30,10 @@
 }
 
 
--(id) init {
-    
-    if(!(self = [super initWithFile:@"sun.png"])) {
-        
+-(id) init 
+{
+    if(!(self = [super initWithFile:@"sun.png"]))
+    {
         return self;
     }
     
@@ -41,8 +43,8 @@
 }
 
 
--(CGSize) contentSize {
-    
+-(CGSize) contentSize 
+{
     return CGSizeMake([super contentSize].width * [self scale], [super contentSize].height * [self scale]);
 }
 

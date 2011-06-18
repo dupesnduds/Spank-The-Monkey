@@ -7,6 +7,7 @@
 //	Last modified: 25/02/09
 //
 
+
 #import "Body.h"
 #import "STMConfig.h"
 
@@ -17,9 +18,10 @@
 @synthesize name;
 
 
--(void) dealloc {
-    
-    if(name) {
+-(void) dealloc 
+{
+    if(name)
+    {
         [name release];
         name = nil;
     }
@@ -28,10 +30,10 @@
 }
 
 
--(id) init {
-    
-    if(!(self = [super initWithFile:@"body.png"])) {
-        
+-(id) init 
+{
+    if(!(self = [super initWithFile:@"body.png"]))
+    {
         return self;
     }
         
@@ -39,8 +41,8 @@
 }
 
 
--(CGRect) rect { 
-    
+-(CGRect) rect 
+{ 
     float w = [self contentSize].width; 
     float h = [self contentSize].height; 
     
